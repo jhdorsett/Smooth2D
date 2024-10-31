@@ -368,11 +368,7 @@ def make_MATS(vert,edge):
     return(IMAT, JMAT)
 
     
-def smooth2(mesh): 
-
-    vert = mesh.nodes
-    conn = mesh.edges
-    tria = mesh.tri
+def smooth2(vert,tria,conn): 
 
     print()
     print(" Smooth triangulation...")
@@ -524,10 +520,5 @@ def smooth2(mesh):
     # Update 'vert' using 'keep'
     vert = vert[keep, :]
 
-    mesh.nodes = vert
-    mesh.edges = conn
-    mesh.tri = tria
-    mesh.tnum = tnum
-    mesh.score = triscr2(vert,tria)
-    #return(vert,conn,tria,tnum)
-    return(mesh)
+    score = triscr2(vert,tria)
+    return(vert,conn,tria,tnum,score)
